@@ -1,6 +1,7 @@
 package sysinfo
 
 import (
+	"log"
 	"os"
 	"os/exec"
 )
@@ -39,4 +40,30 @@ func CreateSystemInfoFile() {
 	getSystemHardwarePlatform.Run()
 	getSystemOS := exec.Command("bash", "-c", "uname -o >> "+os.Getenv("HOME")+"/systemvar.txt")
 	getSystemOS.Run()
+}
+
+//CreateSystemInfoFile2 creates a file in the $HOME path with the important system variables
+func CreateSystemInfoFile2() {
+	/*
+
+		WRITE TO FILE WORKS NOW AND APPENDSwork ont his further try to expand on this
+		only doign this section becase its would be able to be ported to other GOOS
+
+	*/
+	systemInfoLoc := os.ExpandEnv("$HOME/systemvar3.txt")
+	//file is opened here to write to the information. if doesnt exist it will be created
+	file, err := os.OpenFile(systemInfoLoc, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+	// Run uname command and get both stdout and stderr
+	getSystemKernel, err := exec.Command("uname", "-s").CombinedOutput()
+	if err != nil {
+		// Show error and output
+		log.Fatalf("%s: %s", err, getSystemKernel)
+	}
+	if _, err := file.WriteString(string(getSystemKernel)); err != nil {
+		log.Println(err)
+	}
 }
