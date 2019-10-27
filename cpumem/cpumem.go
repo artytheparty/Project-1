@@ -29,3 +29,4 @@ func CreateTopSnapshot() {
 //create a struct and create a program to populate that struct
 //tmm
 //mess around with SSE Server Sent Events
+//checkout bookmarked video
