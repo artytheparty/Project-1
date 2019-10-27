@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/artytheparty/project-1/cpumem"
 	"github.com/artytheparty/project-1/sysinfo"
 )
 
@@ -24,4 +25,5 @@ func main() {
 	fmt.Println(sysinfo.ReadSysInfo())
 	sysinfo.CreateLSCPUFILE()
 	fmt.Println(sysinfo.ReadLSCPUCommand())
+	cpumem.CreateTopSnapshot()
 }
