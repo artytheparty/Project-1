@@ -26,4 +26,6 @@ func main() {
 	sysinfo.CreateLSCPUFILE()
 	fmt.Println(sysinfo.ReadLSCPUCommand())
 	cpumem.CreateTopSnapshot()
+	cpumem.CreateCpuusage()
+	fmt.Println(cpumem.GetCPUUsage())
 }
