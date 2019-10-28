@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body onload="onLoaded();">
+    <div id="main">
+      <h3>
+        Counter:
+        <span id="counter"></span>
+      </h3>
+    </div>
+    <script type="text/javascript">
+      function onLoaded() {
+        var source = new EventSource("/sse/serveUpdateddata");
+        //its been a minute since ive had to put semicolons
+        source.onmessage = function(event) {
+          console.log("OnMessage called: ");
+          console.dir(event);
+          document.getElementById("counter").innerHTML = event.data;
+        };
+      }
+    </script>
+  </body>
+</html>
