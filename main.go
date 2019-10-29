@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -12,8 +14,6 @@ import (
 
 const systemInfoLoc string = "$HOME/systemvar.txt"
 const systemProcInfoLoc string = "$HOME/processtable.txt"
-
-var counter int
 
 func main() {
 	//creates a logging file when error occurs
@@ -29,7 +29,7 @@ func main() {
 	sysinfo.CreateLSCPUFILE()
 	fmt.Println(sysinfo.ReadLSCPUCommand())
 	cpumem.CreateTopSnapshot()
-	cpumem.CreateCpuusage()
+	cpumem.CreateCpuUsage()
 	fmt.Println(cpumem.GetCPUUsage())
 
 	http.Handle("/", http.FileServer(http.Dir("client")))
@@ -41,7 +41,11 @@ func serveUpdateddata(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/event-stream")
 	w.Header().Set("Cache-Control", "no-cache")
 	w.Header().Set("Connection", "keep-alive")
-	counter++
-	fmt.Fprintf(w, "data: %v\n\n", counter)
-	fmt.Printf("data: %v\n", counter)
+	cpumem.CreateCpuUsage()
+	holder := cpumem.GetCPUUsage()
+	var buf bytes.Buffer
+	enc := json.NewEncoder(&buf)
+	enc.Encode(holder)
+	fmt.Fprintf(w, "data: %v\n\n", buf.String())
+	fmt.Printf("data: %v\n", buf.String())
 }
