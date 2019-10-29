@@ -23,25 +23,29 @@ func main() {
 	}
 	defer file.Close()
 	log.SetOutput(file)
-
+	//
 	sysinfo.CreateSystemInfoFile2()
 	fmt.Println(sysinfo.ReadSysInfo())
+	//
 	sysinfo.CreateLSCPUFILE()
 	fmt.Println(sysinfo.ReadLSCPUCommand())
+	//
 	cpumem.CreateTopSnapshot()
-	cpumem.CreateCpuUsage()
-	fmt.Println(cpumem.GetCPUUsage())
+	fmt.Print(cpumem.GetTopSnapshot().Processes)
+	//takes in the cpu usage
+	//cpumem.CreateCPUUsage()
+	//fmt.Println(cpumem.GetCPUUsage())
 
-	http.Handle("/", http.FileServer(http.Dir("client")))
-	http.HandleFunc("/sse/serveUpdateddata", serveUpdateddata)
-	http.ListenAndServe(":8080", nil)
+	// http.Handle("/", http.FileServer(http.Dir("client")))
+	// http.HandleFunc("/sse/serveUpdateddata", serveUpdateddata)
+	// http.ListenAndServe(":8080", nil)
 }
 
 func serveUpdateddata(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/event-stream")
 	w.Header().Set("Cache-Control", "no-cache")
 	w.Header().Set("Connection", "keep-alive")
-	cpumem.CreateCpuUsage()
+	cpumem.CreateCPUUsage()
 	holder := cpumem.GetCPUUsage()
 	var buf bytes.Buffer
 	enc := json.NewEncoder(&buf)
