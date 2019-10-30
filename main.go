@@ -25,6 +25,8 @@ type SuperStruct struct {
 	Cpumem   cpumem.CPUTOP     `json:"CPUMEM"`
 }
 
+var superinfo chan *SuperStruct
+
 func main() {
 	//creates a logging file when error occurs
 	file, err := os.OpenFile("info.log", os.O_CREATE|os.O_APPEND, 0644)
@@ -33,18 +35,20 @@ func main() {
 	}
 	defer file.Close()
 	log.SetOutput(file)
-	//
-	sysinfo.CreateSystemInfoFile2()
-	//fmt.Println(sysinfo.ReadSysInfo())
-	//
-	lscpu.CreateLSCPUFILE()
-	//fmt.Println(lscpu.ReadLSCPUCommand())
+	// //
+	// sysinfo.CreateSystemInfoFile2()
+	// //fmt.Println(sysinfo.ReadSysInfo())
+	// //
+	// lscpu.CreateLSCPUFILE()
+	// //fmt.Println(lscpu.ReadLSCPUCommand())
 
-	//takes in the cpu usage
-	cpuusage.CreateCPUUsage()
-	//fmt.Println(cpuusage.GetCPUUsage())
-	//
-	cpumem.CreateTopSnapshot()
+	// //takes in the cpu usage
+	// cpuusage.CreateCPUUsage()
+	// //fmt.Println(cpuusage.GetCPUUsage())
+	// //
+	//cpumem.CreateTopSnapshot()
+	superinfo = make(chan *SuperStruct)
+	go updateSuperStruct()
 	//fmt.Print(cpumem.GetTopSnapshot())
 	http.Handle("/", http.FileServer(http.Dir("client")))
 	http.HandleFunc("/sse/serveUpdateddata", serveUpdateddata)
@@ -55,11 +59,26 @@ func serveUpdateddata(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/event-stream")
 	w.Header().Set("Cache-Control", "no-cache")
 	w.Header().Set("Connection", "keep-alive")
-	cpuusage.CreateCPUUsage()
-	holder := cpuusage.GetCPUUsage()
+
 	var buf bytes.Buffer
 	enc := json.NewEncoder(&buf)
-	enc.Encode(holder)
+	enc.Encode(<-superinfo)
 	fmt.Fprintf(w, "data: %v\n\n", buf.String())
 	fmt.Printf("data: %v\n", buf.String())
+}
+
+func updateSuperStruct() {
+	for {
+		sysinfo.CreateSystemInfoFile()
+		cpumem.CreateTopSnapshot()
+		cpuusage.CreateCPUUsage()
+		lscpu.CreateLSCPUFILE()
+		superHolder := &SuperStruct{
+			Sysinfo:  sysinfo.ReadSysInfo(),
+			Lscpu:    lscpu.ReadLSCPUCommand(),
+			CPUUsage: cpuusage.GetCPUUsage(),
+			Cpumem:   cpumem.GetTopSnapshot(),
+		}
+		superinfo <- superHolder
+	}
 }
