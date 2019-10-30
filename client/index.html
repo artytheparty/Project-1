@@ -5,97 +5,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
   </head>
 
   <body onload="onLoaded();">
     <div id="main">
-     
-
       <div>
-        
         <table class="table table-dark" style="width: 100%;">
-        <tr>
-          <th>Sys. User</th>
-          <th>Sys. Kernel</th>
-          <th>Sys. Kernel Release</th>
-          <th>Sys. Kernel Ver.</th>
-          <th>Sys. Arch.</th>
-          <th>Sys. Processor</th>
-          <th>Sys. Hardware</th>
-          <th>Sys. OS</th>
-        </tr>
-        <tr>
-          <td id="sysuser"></td>
-          <td id="syskernel"></td>
-          <td id="syskernelR"></td>
-          <td id="syskernelV"></td>
-          <td id="sysarch"></td>
-          <td id="sysproc"></td>
-          <td id="syshardw"></td>
-          <td id="sysOS"></td>
-        </tr>
+          <tr>
+            <th>Sys. User</th>
+            <th>Sys. Kernel</th>
+            <th>Sys. Kernel Release</th>
+            <th>Sys. Kernel Ver.</th>
+            <th>Sys. Arch.</th>
+            <th>Sys. Processor</th>
+            <th>Sys. Hardware</th>
+            <th>Sys. OS</th>
+          </tr>
+          <tr>
+            <td id="sysuser"></td>
+            <td id="syskernel"></td>
+            <td id="syskernelR"></td>
+            <td id="syskernelV"></td>
+            <td id="sysarch"></td>
+            <td id="sysproc"></td>
+            <td id="syshardw"></td>
+            <td id="sysOS"></td>
+          </tr>
         </table>
+
         <table class="table table-dark" style="width: 100%;">
-            <tr>
-              <th>Architechture</th>
-              <th>CPU OP Mode</th>
-              <th>CPUs</th>
-              <th>Threads Per Core</th>
-              <th>VendorID</th>
-              <th>ModelName</th>
-              <th>CPU MHz</th>
-              <th>CPU Max MHz</th>
-              <th>CPU Min MHz</th>
-              <th>Virtualization</th>
-            </tr>
-            <tr>
-              <td id="arch"></td>
-              <td id="cpuopmode"></td>
-              <td id="cpus"></td>
-              <td id="threadspercore"></td>
-              <td id="vendorid"></td>
-              <td id="modename"></td>
-              <td id="cpumhz"></td>
-              <td id="cpumaxmhz"></td>
-              <td id="cpuminmhz"></td>
-              <td id="virt"></td>
-            </tr>
-          </table>
+          <tr>
+            <th>Architechture</th>
+            <th>CPU OP Mode</th>
+            <th>CPUs</th>
+            <th>Threads Per Core</th>
+            <th>VendorID</th>
+            <th>ModelName</th>
+            <th>CPU MHz</th>
+            <th>CPU Max MHz</th>
+            <th>CPU Min MHz</th>
+            <th>Virtualization</th>
+          </tr>
+          <tr>
+            <td id="arch"></td>
+            <td id="cpuopmode"></td>
+            <td id="cpus"></td>
+            <td id="threadspercore"></td>
+            <td id="vendorid"></td>
+            <td id="modename"></td>
+            <td id="cpumhz"></td>
+            <td id="cpumaxmhz"></td>
+            <td id="cpuminmhz"></td>
+            <td id="virt"></td>
+          </tr>
+        </table>
+
         <table class="table table-dark" style="width: 100%;" margin="auto">
-        <tr>
-          <th>CPU</th>
-          <th>%usr</th>
-          <th>%nice</th>
-          <th>%sys</th>
-          <th>%iowait</th>
-          <th>%irq</th>
-          <th>%soft</th>
-          <th>%steal</th>
-          <th>%guest</th>
-          <th>%gnice</th>
-          <th>%idle</th>
-        </tr>
-        <tr>
-          <td id="cpu"></td>
-          <td id="usr"></td>
-          <td id="nice"></td>
-          <td id="sys"></td>
-          <td id="iowait"></td>
-          <td id="irq"></td>
-          <td id="soft"></td>
-          <td id="steal"></td>
-          <td id="guest"></td>
-          <td id="gnice"></td>
-          <td id="idle"></td>
-        </tr>
+          <tr>
+            <th>CPU</th>
+            <th>%usr</th>
+            <th>%nice</th>
+            <th>%sys</th>
+            <th>%iowait</th>
+            <th>%irq</th>
+            <th>%soft</th>
+            <th>%steal</th>
+            <th>%guest</th>
+            <th>%gnice</th>
+            <th>%idle</th>
+          </tr>
+          <tr>
+            <td id="cpu"></td>
+            <td id="usr"></td>
+            <td id="nice"></td>
+            <td id="sys"></td>
+            <td id="iowait"></td>
+            <td id="irq"></td>
+            <td id="soft"></td>
+            <td id="steal"></td>
+            <td id="guest"></td>
+            <td id="gnice"></td>
+            <td id="idle"></td>
+          </tr>
+        </table>
+
+        <table class="table table-dark" style="width: 50%;">
+          <tr>
+            <th>TotalMEM</th>
+            <th>UsedMEM</th>
+            <th>FreeMEM</th>
+            <th>CacheMEM</th>
+          </tr>
+          <tr>
+            <td id="tmem"></td>
+            <td id="umem"></td>
+            <td id="fmem"></td>
+            <td id="cmem"></td>
+          </tr>
+        </table>
+        
+        <table class="table table-dark" id="tableid">
+          <tr>
+            <th>PID</th>
+            <th>User</th>
+            <th>PR</th>
+            <th>NI</th>
+            <th>VIRT</th>
+            <th>RES</th>
+            <th>SHR</th>
+            <th>S</th>
+            <th>CPU</th>
+            <th>MEM</th>
+            <th>TIME</th>
+            <th>Command</th>
+          </tr>
+          <tbody id="populateinhere"></tbody>
         </table>
       </div>
-
     </div>
     <script src="main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
