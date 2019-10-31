@@ -9,6 +9,7 @@ function onLoaded() {
     var sysinfo = cpuinfo["SYSINFO"]
     var lscpu = cpuinfo["LSCPU"]
     var cpumem = cpuinfo["CPUMEM"]
+    var pidarrays = cpumem["Processes"]
     document.getElementById("cpu").innerHTML = cpuusage["cpumem"]["CPU"];
     document.getElementById("usr").innerHTML = cpuusage["cpumem"]["%usr"];
     document.getElementById("nice").innerHTML = cpuusage["cpumem"]["%nice"];
@@ -42,37 +43,28 @@ function onLoaded() {
     document.getElementById("umem").innerHTML = cpumem["UsedMEM"];
     document.getElementById("fmem").innerHTML = cpumem["FreeMEM"];
     document.getElementById("cmem").innerHTML = cpumem["CacheMEM"];
-    
+    loadTableData(pidarrays);
+    function loadTableData(pidarrays) {
+      const tableRef = document.getElementById("populateinhere");
+      let datahtml = '';
+      for(let pid of pidarrays){
+        datahtml += `<tr>
+        <td>${pid.PID}</td>
+        <td>${pid.User}</td>
+        <td>${pid.PR}</td>
+        <td>${pid.NI}</td>
+        <td>${pid.VIRT}</td>
+        <td>${pid.RES}</td>
+        <td>${pid.SHR}</td>
+        <td>${pid.S}</td>
+        <td>${pid.CPU}</td>
+        <td>${pid.MEM}</td>
+        <td>${pid.TIME}</td>
+        <td>${pid.Command}</td>
+        </tr>`;
+      }
+      console.log(datahtml)
+      tableRef.innerHTML = datahtml;
+    }
   };
 }
-function addRow(tableID){
-  let tableRef = document.getElementById(tableID)
-  for (var i = 0; i < cpumem["Processes"].length; i++) {
-    let newRow = tableRef.insertRow(i+1);
-    let newCell1 = newRow.insertCell(0);
-    let newCell2 = newRow.insertCell(1);
-    let newCell3 = newRow.insertCell(2);
-    let newCell4 = newRow.insertCell(3);
-    let newCell5 = newRow.insertCell(4);
-    let newCell6 = newRow.insertCell(5);
-    let newCell7 = newRow.insertCell(6);
-    let newCell8 = newRow.insertCell(7);
-    let newCell9 = newRow.insertCell(8);
-    let newCell10 = newRow.insertCell(9);
-    let newCell11 = newRow.insertCell(10);
-    let newCell12 = newRow.insertCell(11);
-    newCell1 = cpumem["Processes"][i].PID;
-    newCell2 = cpumem["Processes"][i].User;
-    newCell3 = cpumem["Processes"][k].PR;
-    newCell4 = cpumem["Processes"][k].NI;
-    newCell5 = cpumem["Processes"][k].VIRT;
-    newCell6 = cpumem["Processes"][k].RES;
-    newCell7 = cpumem["Processes"][k].SHR;
-    newCell8 = cpumem["Processes"][k].S;
-    newCell9 = cpumem["Processes"][k].CPU;
-    newCell10 = cpumem["Processes"][k].MEM;
-    newCell11 = cpumem["Processes"][k].TIME;
-    newCell12 = cpumem["Processes"][k].Command;
-  }
-};
-addRow("populateinhere");
