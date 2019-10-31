@@ -45,7 +45,7 @@ function onLoaded() {
     document.getElementById("cmem").innerHTML = cpumem["CacheMEM"];
     loadTableData(pidarrays);
     function loadTableData(pidarrays) {
-      const tableRef = document.getElementById("populateinhere");
+      const tableRef = document.querySelector("#populateinhere");
       let datahtml = '';
       for(let pid of pidarrays){
         datahtml += `<tr>
