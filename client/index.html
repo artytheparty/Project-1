@@ -68,7 +68,7 @@
 
         <div class="display:inline-block" style="overflow: hidden;">
           <div style="float: left; width: 65%;">
-            <table class="table table-dark" >
+            <table class="table table-dark">
               <tr>
                 <th>CPU</th>
                 <th>%usr</th>
@@ -98,7 +98,7 @@
             </table>
           </div>
           <div style="float: right; width: 35%;">
-            <table class="table table-dark" >
+            <table class="table table-dark">
               <tr>
                 <th>TotalMEM</th>
                 <th>UsedMEM</th>
@@ -114,25 +114,27 @@
             </table>
           </div>
         </div>
-        <table class="table table-dark" id="tableid">
-          <thead>
-            <tr>
-              <th>PID</th>
-              <th>User</th>
-              <th>PR</th>
-              <th>NI</th>
-              <th>VIRT</th>
-              <th>RES</th>
-              <th>SHR</th>
-              <th>S</th>
-              <th>CPU</th>
-              <th>MEM</th>
-              <th>TIME</th>
-              <th>Command</th>
-            </tr>
-          </thead>
-          <tbody id="populateinhere"></tbody>
-        </table>
+        <div style="overflow: hidden;overflow-y: scroll;height: 450px;">
+          <table class="table table-dark" id="tableid">
+            <thead>
+              <tr>
+                <th>PID</th>
+                <th>User</th>
+                <th>PR</th>
+                <th>NI</th>
+                <th>VIRT</th>
+                <th>RES</th>
+                <th>SHR</th>
+                <th>S</th>
+                <th>CPU</th>
+                <th>MEM</th>
+                <th>TIME</th>
+                <th>Command</th>
+              </tr>
+            </thead>
+            <tbody id="populateinhere"></tbody>
+          </table>
+        </div>
       </div>
     </div>
     <script src="main.js"></script>
