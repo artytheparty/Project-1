@@ -66,70 +66,72 @@
           </tr>
         </table>
 
-        <table class="table table-dark" style="width: 100%;" margin="auto">
-          <tr>
-            <th>CPU</th>
-            <th>%usr</th>
-            <th>%nice</th>
-            <th>%sys</th>
-            <th>%iowait</th>
-            <th>%irq</th>
-            <th>%soft</th>
-            <th>%steal</th>
-            <th>%guest</th>
-            <th>%gnice</th>
-            <th>%idle</th>
-          </tr>
-          <tr>
-            <td id="cpu"></td>
-            <td id="usr"></td>
-            <td id="nice"></td>
-            <td id="sys"></td>
-            <td id="iowait"></td>
-            <td id="irq"></td>
-            <td id="soft"></td>
-            <td id="steal"></td>
-            <td id="guest"></td>
-            <td id="gnice"></td>
-            <td id="idle"></td>
-          </tr>
-        </table>
-
-        <table class="table table-dark" style="width: 50%;">
-          <tr>
-            <th>TotalMEM</th>
-            <th>UsedMEM</th>
-            <th>FreeMEM</th>
-            <th>CacheMEM</th>
-          </tr>
-          <tr>
-            <td id="tmem"></td>
-            <td id="umem"></td>
-            <td id="fmem"></td>
-            <td id="cmem"></td>
-          </tr>
-        </table>
-        
+        <div class="display:inline-block" style="overflow: hidden;">
+          <div style="float: left; width: 65%;">
+            <table class="table table-dark" >
+              <tr>
+                <th>CPU</th>
+                <th>%usr</th>
+                <th>%nice</th>
+                <th>%sys</th>
+                <th>%iowait</th>
+                <th>%irq</th>
+                <th>%soft</th>
+                <th>%steal</th>
+                <th>%guest</th>
+                <th>%gnice</th>
+                <th>%idle</th>
+              </tr>
+              <tr>
+                <td id="cpu"></td>
+                <td id="usr"></td>
+                <td id="nice"></td>
+                <td id="sys"></td>
+                <td id="iowait"></td>
+                <td id="irq"></td>
+                <td id="soft"></td>
+                <td id="steal"></td>
+                <td id="guest"></td>
+                <td id="gnice"></td>
+                <td id="idle"></td>
+              </tr>
+            </table>
+          </div>
+          <div style="float: right; width: 35%;">
+            <table class="table table-dark" >
+              <tr>
+                <th>TotalMEM</th>
+                <th>UsedMEM</th>
+                <th>FreeMEM</th>
+                <th>CacheMEM</th>
+              </tr>
+              <tr>
+                <td id="tmem"></td>
+                <td id="umem"></td>
+                <td id="fmem"></td>
+                <td id="cmem"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
         <table class="table table-dark" id="tableid">
           <thead>
-          <tr>
-            <th>PID</th>
-            <th>User</th>
-            <th>PR</th>
-            <th>NI</th>
-            <th>VIRT</th>
-            <th>RES</th>
-            <th>SHR</th>
-            <th>S</th>
-            <th>CPU</th>
-            <th>MEM</th>
-            <th>TIME</th>
-            <th>Command</th>
-          </tr>
-        </thead>
-          <tbody id="populateinhere">
-            
-          </tbody>
+            <tr>
+              <th>PID</th>
+              <th>User</th>
+              <th>PR</th>
+              <th>NI</th>
+              <th>VIRT</th>
+              <th>RES</th>
+              <th>SHR</th>
+              <th>S</th>
+              <th>CPU</th>
+              <th>MEM</th>
+              <th>TIME</th>
+              <th>Command</th>
+            </tr>
+          </thead>
+          <tbody id="populateinhere"></tbody>
         </table>
       </div>
     </div>
