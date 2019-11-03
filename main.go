@@ -41,7 +41,6 @@ func main() {
 	// //
 	// lscpu.CreateLSCPUFILE()
 	// //fmt.Println(lscpu.ReadLSCPUCommand())
-
 	// //takes in the cpu usage
 	// cpuusage.CreateCPUUsage()
 	// //fmt.Println(cpuusage.GetCPUUsage())
